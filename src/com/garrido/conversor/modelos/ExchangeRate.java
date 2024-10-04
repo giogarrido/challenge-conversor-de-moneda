@@ -1,6 +1,6 @@
 package com.garrido.conversor.modelos;
 
-public record Conversion(
+public record ExchangeRate(
         String result,
         String base_code,
         ConversionRates conversion_rates

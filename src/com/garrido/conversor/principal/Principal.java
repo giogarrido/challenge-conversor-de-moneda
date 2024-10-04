@@ -1,118 +1,116 @@
 package com.garrido.conversor.principal;
 
-import com.garrido.conversor.modelos.Conversion;
-import com.garrido.conversor.modelos.ConversionRates;
+import com.garrido.conversor.modelos.ExchangeRate;
 import com.google.gson.*;
 
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner lectura = new Scanner(System.in);
-
+        List<ExchangeRate> conversiones = new ArrayList<>();
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
 
         while (true){
+            System.out.println("Bienvenido/a al Conversor de Moneda\n");
+            System.out.println("1) Dólar =>> Peso Mexicano");
+            System.out.println("2) Peso Mexicano =>> Dólar");
+            System.out.println("3) Dólar =>> Real Brasileño");
+            System.out.println("4) Real Brasileño =>> Dólar");
+            System.out.println("5) Dólar =>> Peso Colombiano");
+            System.out.println("6) Peso Colombiano =>> Dólar");
+            System.out.println("7) Salir");
             System.out.println("Elija una opción valida:");
-/*            Gson gson = new GsonBuilder()
-                    .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                    .setPrettyPrinting()
-                    .create();*/
+
+
             var opcion = lectura.nextInt();
-            var monedaAConvertir="";
-            var monedaConvertida="";
+            String monedaAConvertir="";
+            String monedaConvertida="";
 
             if(opcion==7){
                 System.out.println("Gracias por utilizar el conversor de monedas");
                 break;
             }
-            switch (opcion){
-                case 1 :
-                    monedaAConvertir="USD";
-                    monedaConvertida="MXN";
-                    break;
 
-                case 2 :
-                    monedaAConvertir="MXN";
-                    monedaConvertida="USD";
-                    break;
-
-                case 3 :
-                    monedaAConvertir="USD";
-                    monedaConvertida="BRL";
-                    break;
-
-                case 4 :
-                    monedaAConvertir="BRL";
-                    monedaConvertida="USD";
-                    break;
-
-                case 5 :
-                    monedaAConvertir="USD";
-                    monedaConvertida="COP";
-                    break;
-
-                case 6 :
-                    monedaAConvertir="COP";
-                    monedaConvertida="USD";
-                    break;
-
+            switch (opcion) {
+                case 1 -> {
+                    monedaAConvertir = "USD";
+                    monedaConvertida = "MXN";
+                }
+                case 2 -> {
+                    monedaAConvertir = "MXN";
+                    monedaConvertida = "USD";
+                }
+                case 3 -> {
+                    monedaAConvertir = "USD";
+                    monedaConvertida = "BRL";
+                }
+                case 4 -> {
+                    monedaAConvertir = "BRL";
+                    monedaConvertida = "USD";
+                }
+                case 5 -> {
+                    monedaAConvertir = "USD";
+                    monedaConvertida = "COP";
+                }
+                case 6 -> {
+                    monedaAConvertir = "COP";
+                    monedaConvertida = "USD";
+                }
+                default -> throw new IllegalArgumentException("Opción inválida");
             }
 
             String direccion = "https://v6.exchangerate-api.com/v6/ee043825bc3ac24fd94e3fa5/latest/" +
                     monedaAConvertir;
 
             try{
-//                HttpClient client = HttpClient.newHttpClient();
-//                HttpRequest request = HttpRequest.newBuilder()
-//                        .uri(URI.create(direccion))
-//                        .build();
-//                HttpResponse<String> response = client
-//                        .send(request, HttpResponse.BodyHandlers.ofString());
-//
-//                String json = response.body();
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(direccion))
+                        .build();
+                HttpResponse<String> response = client
+                        .send(request, HttpResponse.BodyHandlers.ofString());
+
+                String json = response.body();
 //                System.out.println(json);
 
-                URL url = new URL(direccion);
-                HttpURLConnection request = (HttpURLConnection) url.openConnection();
-                request.connect();
-
-//                JsonParser jp = new JsonParser();
-//                JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-//                JsonObject jsonobj = root.getAsJsonObject();
-
-
-                // Obtener el contenido de la respuesta en JSON
-                InputStreamReader reader = new InputStreamReader(request.getInputStream());
-
-                // Crear instancia de Gson
-                Gson gson = new Gson();
 
                 // Deserializar a una instancia de Conversion
-                Conversion conversion = gson.fromJson(reader, Conversion.class);
+                ExchangeRate conversion = gson.fromJson(json, ExchangeRate.class);
 
-                // Cerrar el InputStreamReader
-                reader.close();
-
-                System.out.println(conversion);
-                System.out.println("un " + monedaAConvertir);
+//                System.out.println(conversion);
                 double resultado = conversion.conversion_rates().getValue(monedaConvertida);
-                System.out.println("Es igual a " + resultado +" " + monedaConvertida);
+                String txtMonedaConvertir = conversion.conversion_rates().getValueConvertTxt(monedaAConvertir);
+                String txtMonedaConvertida = conversion.conversion_rates().getValueConvertedTxt(monedaConvertida);
+                System.out.println("un " + txtMonedaConvertir + " es igual a " + resultado +" " + txtMonedaConvertida);
+
+                conversiones.add(conversion);
 
 
             }catch (IllegalArgumentException e) {
                 System.out.println("Error en la URI, verifique la dirección.");
-            } catch (IOException e) {
+            } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
-
             }
 
 
         }
+        //System.out.println(conversiones);
+        FileWriter escritura = new FileWriter("conversiones.json");
+        escritura.write(gson.toJson(conversiones));
+        escritura.close();
+        System.out.println("Finalizó la ejecución del programa");
+
 
     }
 }

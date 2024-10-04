@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a244bf2-f262-40b8-bd7b-6657f638b142" name="Changes" comment="first commit">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/giova.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/challenge-conversor-de-moneda.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/garrido/conversor/modelos/Conversion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/garrido/conversor/modelos/ConversionRates.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/garrido/conversor/principal/Principal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/garrido/conversor/modelos/Conversion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/garrido/conversor/modelos/ExchangeRate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/garrido/conversor/modelos/ConversionRates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/garrido/conversor/modelos/ConversionRates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/garrido/conversor/principal/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/garrido/conversor/principal/Principal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -44,6 +37,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -54,8 +51,8 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
@@ -89,6 +86,8 @@
       <option name="presentableId" value="Default" />
       <updated>1727833474602</updated>
       <workItem from="1727833476468" duration="11455000" />
+      <workItem from="1727850407601" duration="71000" />
+      <workItem from="1728006644171" duration="7872000" />
     </task>
     <servers />
   </component>

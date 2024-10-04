@@ -17,4 +17,23 @@ public record ConversionRates(
             default -> throw new IllegalArgumentException("Moneda no soportada: " + currencyCode);
         };
     }
+
+    public String getValueConvertTxt(String currencyCode) {
+        return switch (currencyCode.toUpperCase()) {
+            case "USD" -> "Dólar";
+            case "MXN" -> "Peso Mexicano";
+            case "BRL" -> "Real Brasileño";
+            case "COP" -> "Peso Colombiano";
+            default -> throw new IllegalArgumentException("Moneda no soportada: " + currencyCode);
+        };
+    }
+    public String getValueConvertedTxt(String currencyCode) {
+        return switch (currencyCode.toUpperCase()) {
+            case "USD" -> "Dólares";
+            case "MXN" -> "Pesos Mexicano";
+            case "BRL" -> "Reales Brasileño";
+            case "COP" -> "Pesos Colombiano";
+            default -> throw new IllegalArgumentException("Moneda no soportada: " + currencyCode);
+        };
+    }
 }

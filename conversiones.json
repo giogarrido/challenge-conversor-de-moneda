@@ -1,0 +1,32 @@
+[
+  {
+    "result": "success",
+    "base_code": "USD",
+    "conversion_rates": {
+      "USD": 1.0,
+      "MXN": 19.4128,
+      "BRL": 5.4598,
+      "COP": 4189.3717
+    }
+  },
+  {
+    "result": "success",
+    "base_code": "COP",
+    "conversion_rates": {
+      "USD": 2.387E-4,
+      "MXN": 0.00466,
+      "BRL": 0.001303,
+      "COP": 1.0
+    }
+  },
+  {
+    "result": "success",
+    "base_code": "BRL",
+    "conversion_rates": {
+      "USD": 0.1828,
+      "MXN": 3.5705,
+      "BRL": 1.0,
+      "COP": 767.1915
+    }
+  }
+]
